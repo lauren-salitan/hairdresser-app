@@ -28,11 +28,13 @@ export async function signUp(
   }
 
   const supabase = await createClient();
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
   const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: { full_name: fullName, role },
+      emailRedirectTo: `${appUrl}/login`,
     },
   });
 
