@@ -14,31 +14,23 @@ export default function SignupPage() {
 
   return (
     <div className="mx-auto max-w-sm px-4 py-16">
-      <h1 className="text-2xl font-semibold">Create your account</h1>
-      <p className="mt-1 text-sm text-black/60 dark:text-white/60">
+      <h1 className="font-display text-2xl font-semibold">Create your account</h1>
+      <p className="mt-1 text-sm text-muted">
         Book appointments, or set up shop as a stylist.
       </p>
 
-      <div className="mt-6 grid grid-cols-2 gap-2 rounded-full border border-black/15 p-1 text-sm dark:border-white/20">
+      <div className="mt-6 grid grid-cols-2 gap-1 rounded-full border border-white/15 p-1">
         <button
           type="button"
           onClick={() => setRole("client")}
-          className={`rounded-full py-2 font-medium ${
-            role === "client"
-              ? "bg-foreground text-background"
-              : "hover:bg-black/5 dark:hover:bg-white/10"
-          }`}
+          className={role === "client" ? "pill-toggle-active" : "pill-toggle"}
         >
           I&apos;m booking
         </button>
         <button
           type="button"
           onClick={() => setRole("stylist")}
-          className={`rounded-full py-2 font-medium ${
-            role === "stylist"
-              ? "bg-foreground text-background"
-              : "hover:bg-black/5 dark:hover:bg-white/10"
-          }`}
+          className={role === "stylist" ? "pill-toggle-active" : "pill-toggle"}
         >
           I&apos;m a stylist
         </button>
@@ -53,17 +45,12 @@ export default function SignupPage() {
             type="text"
             name="full_name"
             required
-            className="rounded-md border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent"
+            className="input-glass"
           />
         </label>
         <label className="flex flex-col gap-1 text-sm">
           Email
-          <input
-            type="email"
-            name="email"
-            required
-            className="rounded-md border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent"
-          />
+          <input type="email" name="email" required className="input-glass" />
         </label>
         <label className="flex flex-col gap-1 text-sm">
           Password
@@ -72,24 +59,18 @@ export default function SignupPage() {
             name="password"
             required
             minLength={8}
-            className="rounded-md border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent"
+            className="input-glass"
           />
-          <span className="text-xs text-black/50 dark:text-white/50">
-            At least 8 characters.
-          </span>
+          <span className="text-xs text-muted-2">At least 8 characters.</span>
         </label>
-        <button
-          type="submit"
-          disabled={pending}
-          className="mt-2 rounded-full bg-foreground px-4 py-2 text-background font-medium hover:opacity-90 disabled:opacity-50"
-        >
+        <button type="submit" disabled={pending} className="btn-primary mt-2">
           {pending ? "Creating account…" : "Create account"}
         </button>
       </form>
 
-      <p className="mt-6 text-sm text-black/60 dark:text-white/60">
+      <p className="mt-6 text-sm text-muted">
         Already have an account?{" "}
-        <Link href="/login" className="underline">
+        <Link href="/login" className="text-foreground underline">
           Sign in
         </Link>
       </p>

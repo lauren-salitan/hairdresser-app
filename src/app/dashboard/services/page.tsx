@@ -26,18 +26,18 @@ export default async function ServicesPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
-      <h1 className="text-2xl font-semibold">Your services</h1>
-      <p className="mt-1 text-sm text-black/60 dark:text-white/60">
+      <h1 className="font-display text-2xl font-semibold">Your services</h1>
+      <p className="mt-1 text-sm text-muted">
         Clients pick from these when booking. Toggle a service off to hide it
         without deleting it.
       </p>
 
-      <ul className="mt-8 divide-y divide-black/10 dark:divide-white/10">
+      <ul className="mt-8 divide-y divide-white/10">
         {services?.map((service) => (
           <li key={service.id} className="flex items-center justify-between gap-3 py-3">
             <div className={service.active ? "" : "opacity-50"}>
               <p className="font-medium">{service.name}</p>
-              <p className="text-sm text-black/60 dark:text-white/60">
+              <p className="text-sm text-muted">
                 {formatMoney(service.price_cents)} ·{" "}
                 {formatDuration(service.duration_minutes)}
               </p>
@@ -46,13 +46,13 @@ export default async function ServicesPage() {
           </li>
         ))}
         {services?.length === 0 && (
-          <p className="py-3 text-sm text-black/60 dark:text-white/60">
+          <p className="py-3 text-sm text-muted">
             No services yet — add your first one below.
           </p>
         )}
       </ul>
 
-      <h2 className="mt-10 font-semibold">Add a service</h2>
+      <h2 className="font-display mt-10 font-semibold">Add a service</h2>
       <NewServiceForm />
     </div>
   );

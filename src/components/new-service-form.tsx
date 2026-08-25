@@ -16,11 +16,7 @@ export function NewServiceForm() {
 
   return (
     <form ref={formRef} action={formAction} className="mt-4 flex flex-col gap-3">
-      {state?.error && (
-        <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
-          {state.error}
-        </p>
-      )}
+      {state?.error && <p className="alert-error">{state.error}</p>}
       <label className="flex flex-col gap-1 text-sm">
         Name
         <input
@@ -28,16 +24,12 @@ export function NewServiceForm() {
           name="name"
           required
           placeholder="e.g. Women's cut & style"
-          className="rounded-md border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent"
+          className="input-glass"
         />
       </label>
       <label className="flex flex-col gap-1 text-sm">
         Description
-        <textarea
-          name="description"
-          rows={2}
-          className="rounded-md border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent"
-        />
+        <textarea name="description" rows={2} className="input-glass" />
       </label>
       <div className="grid grid-cols-2 gap-3">
         <label className="flex flex-col gap-1 text-sm">
@@ -49,7 +41,7 @@ export function NewServiceForm() {
             step={5}
             required
             defaultValue={45}
-            className="rounded-md border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent"
+            className="input-glass"
           />
         </label>
         <label className="flex flex-col gap-1 text-sm">
@@ -60,14 +52,14 @@ export function NewServiceForm() {
             min={0}
             step={1}
             required
-            className="rounded-md border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent"
+            className="input-glass"
           />
         </label>
       </div>
       <button
         type="submit"
         disabled={pending}
-        className="mt-1 self-start rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90 disabled:opacity-50"
+        className="btn-primary mt-1 self-start !px-4 !py-2 text-sm"
       >
         {pending ? "Adding…" : "Add service"}
       </button>

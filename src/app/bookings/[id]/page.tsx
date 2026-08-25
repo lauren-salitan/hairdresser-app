@@ -28,51 +28,42 @@ export default async function BookingDetailPage(
 
   return (
     <div className="mx-auto max-w-lg px-4 py-16">
-      <h1 className="text-2xl font-semibold">
+      <h1 className="font-display text-2xl font-semibold">
         {justPaid ? "You're booked!" : "Booking request sent"}
       </h1>
-      <p className="mt-1 text-sm text-black/60 dark:text-white/60">
+      <p className="mt-1 text-sm text-muted">
         {justPaid
           ? "Your payment went through and your appointment is confirmed."
           : "The stylist will confirm shortly. You can pay any time before your appointment."}
       </p>
 
-      {error && (
-        <p className="mt-4 rounded-md bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
-          {error}
-        </p>
-      )}
+      {error && <p className="alert-error mt-4">{error}</p>}
 
-      <div className="mt-6 rounded-xl border border-black/10 p-5 dark:border-white/10">
+      <div className="card-glass mt-6">
         <p className="font-semibold">{booking.services?.name}</p>
-        <p className="text-sm text-black/60 dark:text-white/60">
+        <p className="text-sm text-muted">
           with {booking.stylists?.business_name}
         </p>
         <p className="mt-3 text-sm">{formatDateTime(booking.start_time)}</p>
-        <p className="text-sm text-black/60 dark:text-white/60">
+        <p className="text-sm text-muted">
           {[booking.stylists?.address_line, booking.stylists?.city, booking.stylists?.state]
             .filter(Boolean)
             .join(", ")}
         </p>
-        <div className="mt-4 flex items-center justify-between border-t border-black/10 pt-4 dark:border-white/10">
+        <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4">
           <span className="text-sm">
             Status: <span className="capitalize">{booking.status}</span>
           </span>
-          <span className="font-medium">{formatMoney(booking.price_cents)}</span>
+          <span className="font-semibold">{formatMoney(booking.price_cents)}</span>
         </div>
       </div>
 
       {booking.payment_status === "paid" ? (
-        <p className="mt-6 text-sm text-green-700 dark:text-green-400">
-          Paid ✓
-        </p>
+        <p className="mt-6 text-sm text-green-400">Paid ✓</p>
       ) : (
         <form action="/api/checkout" method="POST" className="mt-6">
           <input type="hidden" name="booking_id" value={booking.id} />
-          <button
-            type="submit"
-            className="w-full rounded-full bg-foreground px-4 py-2.5 text-sm font-medium text-background hover:opacity-90"
-          >
+          <button type="submit" className="btn-primary w-full">
             Pay {formatMoney(booking.price_cents)} now
           </button>
         </form>

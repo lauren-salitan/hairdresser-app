@@ -25,13 +25,13 @@ export default async function BrowsePage(props: PageProps<"/browse">) {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
-      <h1 className="text-2xl font-semibold">Find a stylist</h1>
+      <h1 className="font-display text-2xl font-semibold">Find a stylist</h1>
 
       <form className="mt-6 flex flex-wrap gap-3" action="/browse">
         <select
           name="specialty"
           defaultValue={specialty}
-          className="rounded-md border border-black/15 px-3 py-2 text-sm dark:border-white/20 dark:bg-transparent"
+          className="input-glass w-auto"
         >
           <option value="">All specialties</option>
           {SPECIALTIES.map((s) => (
@@ -45,18 +45,15 @@ export default async function BrowsePage(props: PageProps<"/browse">) {
           name="city"
           defaultValue={city}
           placeholder="City"
-          className="rounded-md border border-black/15 px-3 py-2 text-sm dark:border-white/20 dark:bg-transparent"
+          className="input-glass w-auto"
         />
-        <button
-          type="submit"
-          className="rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90"
-        >
+        <button type="submit" className="btn-primary !px-5 !py-2 text-sm">
           Search
         </button>
       </form>
 
       {error && (
-        <p className="mt-8 text-sm text-red-600">
+        <p className="alert-error mt-8">
           Something went wrong loading stylists: {error.message}
         </p>
       )}
@@ -72,36 +69,35 @@ export default async function BrowsePage(props: PageProps<"/browse">) {
             <Link
               key={stylist.id}
               href={`/stylists/${stylist.id}`}
-              className="rounded-xl border border-black/10 p-5 transition hover:border-black/30 dark:border-white/10 dark:hover:border-white/30"
+              className="card-glass"
             >
               <div className="flex items-start justify-between gap-2">
-                <h2 className="font-semibold">{stylist.business_name}</h2>
+                <h2 className="font-display font-semibold">
+                  {stylist.business_name}
+                </h2>
                 {stylist.rating_count > 0 && (
-                  <span className="shrink-0 text-sm text-black/60 dark:text-white/60">
+                  <span className="shrink-0 text-sm text-muted">
                     ★ {stylist.rating_avg.toFixed(1)} ({stylist.rating_count})
                   </span>
                 )}
               </div>
-              <p className="mt-1 text-sm text-black/60 dark:text-white/60">
+              <p className="mt-1 text-sm text-muted">
                 {[stylist.city, stylist.state].filter(Boolean).join(", ")}
               </p>
               {stylist.bio && (
-                <p className="mt-2 line-clamp-2 text-sm text-black/70 dark:text-white/70">
+                <p className="mt-2 line-clamp-2 text-sm text-muted">
                   {stylist.bio}
                 </p>
               )}
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {stylist.specialties.slice(0, 4).map((s) => (
-                  <span
-                    key={s}
-                    className="rounded-full bg-black/5 px-2.5 py-1 text-xs dark:bg-white/10"
-                  >
+                  <span key={s} className="badge-glass">
                     {s}
                   </span>
                 ))}
               </div>
               {minPrice !== null && (
-                <p className="mt-3 text-sm font-medium">
+                <p className="mt-3 text-sm font-semibold">
                   From {formatMoney(minPrice)}
                 </p>
               )}
@@ -111,7 +107,7 @@ export default async function BrowsePage(props: PageProps<"/browse">) {
       </div>
 
       {stylists?.length === 0 && (
-        <p className="mt-12 text-center text-black/60 dark:text-white/60">
+        <p className="mt-12 text-center text-muted">
           No stylists match those filters yet.
         </p>
       )}

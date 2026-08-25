@@ -19,35 +19,35 @@ export async function Nav() {
   }
 
   return (
-    <header className="border-b border-black/10 dark:border-white/10">
+    <header className="sticky top-0 z-20 border-b border-white/10 bg-background/70 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-        <Link href="/" className="text-lg font-semibold tracking-tight">
+        <Link
+          href="/"
+          className="font-display text-lg font-semibold tracking-tight text-gradient"
+        >
           Chairside
         </Link>
-        <div className="flex items-center gap-5 text-sm">
-          <Link href="/browse" className="hover:underline">
+        <div className="flex items-center gap-6">
+          <Link href="/browse" className="nav-link">
             Find a stylist
           </Link>
           {user ? (
             <>
-              <Link href="/dashboard" className="hover:underline">
+              <Link href="/dashboard" className="nav-link">
                 {role === "stylist" ? "My dashboard" : "My bookings"}
               </Link>
               <form action={signOut}>
-                <button type="submit" className="hover:underline cursor-pointer">
+                <button type="submit" className="nav-link cursor-pointer">
                   Sign out
                 </button>
               </form>
             </>
           ) : (
             <>
-              <Link href="/login" className="hover:underline">
+              <Link href="/login" className="nav-link">
                 Sign in
               </Link>
-              <Link
-                href="/signup"
-                className="rounded-full bg-foreground px-4 py-1.5 text-background font-medium hover:opacity-90"
-              >
+              <Link href="/signup" className="btn-primary !px-4 !py-1.5 text-sm">
                 Get started
               </Link>
             </>

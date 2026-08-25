@@ -13,8 +13,8 @@ export default function LoginPage() {
 
   return (
     <div className="mx-auto max-w-sm px-4 py-16">
-      <h1 className="text-2xl font-semibold">Welcome back</h1>
-      <p className="mt-1 text-sm text-black/60 dark:text-white/60">
+      <h1 className="font-display text-2xl font-semibold">Welcome back</h1>
+      <p className="mt-1 text-sm text-muted">
         Sign in to book or manage your appointments.
       </p>
 
@@ -22,12 +22,7 @@ export default function LoginPage() {
         <SubmitError state={state} />
         <label className="flex flex-col gap-1 text-sm">
           Email
-          <input
-            type="email"
-            name="email"
-            required
-            className="rounded-md border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent"
-          />
+          <input type="email" name="email" required className="input-glass" />
         </label>
         <label className="flex flex-col gap-1 text-sm">
           Password
@@ -35,21 +30,17 @@ export default function LoginPage() {
             type="password"
             name="password"
             required
-            className="rounded-md border border-black/15 px-3 py-2 dark:border-white/20 dark:bg-transparent"
+            className="input-glass"
           />
         </label>
-        <button
-          type="submit"
-          disabled={pending}
-          className="mt-2 rounded-full bg-foreground px-4 py-2 text-background font-medium hover:opacity-90 disabled:opacity-50"
-        >
+        <button type="submit" disabled={pending} className="btn-primary mt-2">
           {pending ? "Signing in…" : "Sign in"}
         </button>
       </form>
 
-      <p className="mt-6 text-sm text-black/60 dark:text-white/60">
+      <p className="mt-6 text-sm text-muted">
         No account yet?{" "}
-        <Link href="/signup" className="underline">
+        <Link href="/signup" className="text-foreground underline">
           Create one
         </Link>
       </p>

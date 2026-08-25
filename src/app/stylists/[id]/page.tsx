@@ -28,57 +28,50 @@ export default async function StylistProfilePage(
       <div className="lg:col-span-2">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-semibold">{stylist.business_name}</h1>
-            <p className="text-sm text-black/60 dark:text-white/60">
+            <h1 className="font-display text-2xl font-semibold">
+              {stylist.business_name}
+            </h1>
+            <p className="text-sm text-muted">
               {[stylist.address_line, stylist.city, stylist.state]
                 .filter(Boolean)
                 .join(", ")}
             </p>
           </div>
           {stylist.rating_count > 0 && (
-            <span className="shrink-0 text-sm text-black/60 dark:text-white/60">
+            <span className="shrink-0 text-sm text-muted">
               ★ {stylist.rating_avg.toFixed(1)} ({stylist.rating_count} reviews)
             </span>
           )}
         </div>
 
-        {stylist.bio && (
-          <p className="mt-4 text-black/80 dark:text-white/80">{stylist.bio}</p>
-        )}
+        {stylist.bio && <p className="mt-4 text-foreground/90">{stylist.bio}</p>}
 
         <div className="mt-4 flex flex-wrap gap-1.5">
           {stylist.specialties.map((s) => (
-            <span
-              key={s}
-              className="rounded-full bg-black/5 px-2.5 py-1 text-xs dark:bg-white/10"
-            >
+            <span key={s} className="badge-glass">
               {s}
             </span>
           ))}
         </div>
 
-        <h2 className="mt-10 font-semibold">Services</h2>
-        <ul className="mt-3 divide-y divide-black/10 dark:divide-white/10">
+        <h2 className="font-display mt-10 font-semibold">Services</h2>
+        <ul className="mt-3 divide-y divide-white/10">
           {activeServices.map((service) => (
             <li key={service.id} className="flex items-start justify-between py-3">
               <div>
                 <p className="font-medium">{service.name}</p>
                 {service.description && (
-                  <p className="text-sm text-black/60 dark:text-white/60">
-                    {service.description}
-                  </p>
+                  <p className="text-sm text-muted">{service.description}</p>
                 )}
-                <p className="text-sm text-black/50 dark:text-white/50">
+                <p className="text-sm text-muted-2">
                   {formatDuration(service.duration_minutes)}
                 </p>
               </div>
-              <p className="font-medium">{formatMoney(service.price_cents)}</p>
+              <p className="font-semibold">{formatMoney(service.price_cents)}</p>
             </li>
           ))}
           {activeServices.length === 0 && (
-            <p className="py-3 text-sm text-black/60 dark:text-white/60">
-              No services listed yet.
-            </p>
+            <p className="py-3 text-sm text-muted">No services listed yet.</p>
           )}
         </ul>
       </div>

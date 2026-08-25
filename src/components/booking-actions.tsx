@@ -16,12 +16,12 @@ export function BookingActions({
     startTransition(() => updateBookingStatus(bookingId, next));
 
   return (
-    <div className="flex shrink-0 gap-2 text-xs">
+    <div className="flex shrink-0 gap-2">
       {status === "pending" && (
         <button
           disabled={isPending}
           onClick={() => set("confirmed")}
-          className="rounded-full bg-foreground px-3 py-1.5 font-medium text-background hover:opacity-90 disabled:opacity-40"
+          className="btn-primary !px-3 !py-1.5 text-xs"
         >
           Confirm
         </button>
@@ -30,7 +30,7 @@ export function BookingActions({
         <button
           disabled={isPending}
           onClick={() => set("completed")}
-          className="rounded-full bg-foreground px-3 py-1.5 font-medium text-background hover:opacity-90 disabled:opacity-40"
+          className="btn-primary !px-3 !py-1.5 text-xs"
         >
           Mark completed
         </button>
@@ -39,7 +39,7 @@ export function BookingActions({
         <button
           disabled={isPending}
           onClick={() => set("cancelled")}
-          className="rounded-full border border-black/15 px-3 py-1.5 hover:bg-black/5 dark:border-white/20 dark:hover:bg-white/10"
+          className="btn-secondary !px-3 !py-1.5 text-xs"
         >
           Cancel
         </button>

@@ -42,25 +42,19 @@ export default async function DashboardPage() {
     return (
       <div className="mx-auto max-w-4xl px-4 py-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h1 className="text-2xl font-semibold">Your bookings</h1>
-          <div className="flex gap-2 text-sm">
-            <Link
-              href="/dashboard/services"
-              className="rounded-full border border-black/15 px-4 py-2 hover:bg-black/5 dark:border-white/20 dark:hover:bg-white/10"
-            >
+          <h1 className="font-display text-2xl font-semibold">Your bookings</h1>
+          <div className="flex gap-2">
+            <Link href="/dashboard/services" className="btn-secondary !px-4 !py-2 text-sm">
               Manage services
             </Link>
-            <Link
-              href="/dashboard/availability"
-              className="rounded-full border border-black/15 px-4 py-2 hover:bg-black/5 dark:border-white/20 dark:hover:bg-white/10"
-            >
+            <Link href="/dashboard/availability" className="btn-secondary !px-4 !py-2 text-sm">
               Set availability
             </Link>
           </div>
         </div>
 
         {!stylist.stripe_onboarded && (
-          <div className="mt-6 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-200">
+          <div className="alert-warning mt-6">
             You haven&apos;t connected a payout account yet, so you can&apos;t
             get paid for bookings.{" "}
             <a href="/api/stripe/connect" className="font-medium underline">
@@ -69,17 +63,17 @@ export default async function DashboardPage() {
           </div>
         )}
 
-        <h2 className="mt-8 text-sm font-medium text-black/60 dark:text-white/60">
+        <h2 className="mt-8 text-sm font-medium text-muted">
           Upcoming ({upcoming.length})
         </h2>
-        <ul className="mt-2 divide-y divide-black/10 dark:divide-white/10">
+        <ul className="mt-2 divide-y divide-white/10">
           {upcoming.map((b) => (
             <li key={b.id} className="flex items-center justify-between gap-3 py-3">
               <div>
                 <p className="font-medium">
                   {b.services?.name} — {b.profiles?.full_name}
                 </p>
-                <p className="text-sm text-black/60 dark:text-white/60">
+                <p className="text-sm text-muted">
                   {formatDateTime(b.start_time)} · {formatMoney(b.price_cents)} ·{" "}
                   <span className="capitalize">{b.status}</span>
                 </p>
@@ -88,24 +82,20 @@ export default async function DashboardPage() {
             </li>
           ))}
           {upcoming.length === 0 && (
-            <p className="py-3 text-sm text-black/60 dark:text-white/60">
-              No upcoming bookings.
-            </p>
+            <p className="py-3 text-sm text-muted">No upcoming bookings.</p>
           )}
         </ul>
 
         {past.length > 0 && (
           <>
-            <h2 className="mt-8 text-sm font-medium text-black/60 dark:text-white/60">
-              Past
-            </h2>
-            <ul className="mt-2 divide-y divide-black/10 dark:divide-white/10">
+            <h2 className="mt-8 text-sm font-medium text-muted">Past</h2>
+            <ul className="mt-2 divide-y divide-white/10">
               {past.map((b) => (
                 <li key={b.id} className="py-3">
                   <p className="font-medium">
                     {b.services?.name} — {b.profiles?.full_name}
                   </p>
-                  <p className="text-sm text-black/60 dark:text-white/60">
+                  <p className="text-sm text-muted">
                     {formatDateTime(b.start_time)} · {formatMoney(b.price_cents)} ·{" "}
                     <span className="capitalize">{b.status}</span>
                   </p>
@@ -134,20 +124,18 @@ export default async function DashboardPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10">
-      <h1 className="text-2xl font-semibold">
+      <h1 className="font-display text-2xl font-semibold">
         Welcome back{profile?.full_name ? `, ${profile.full_name.split(" ")[0]}` : ""}
       </h1>
 
-      <h2 className="mt-8 text-sm font-medium text-black/60 dark:text-white/60">
-        Upcoming
-      </h2>
-      <ul className="mt-2 divide-y divide-black/10 dark:divide-white/10">
+      <h2 className="mt-8 text-sm font-medium text-muted">Upcoming</h2>
+      <ul className="mt-2 divide-y divide-white/10">
         {upcoming.map((b) => (
           <li key={b.id} className="py-3">
             <Link href={`/bookings/${b.id}`} className="font-medium hover:underline">
               {b.services?.name} with {b.stylists?.business_name}
             </Link>
-            <p className="text-sm text-black/60 dark:text-white/60">
+            <p className="text-sm text-muted">
               {formatDateTime(b.start_time)} · {formatMoney(b.price_cents)} ·{" "}
               <span className="capitalize">{b.status}</span> ·{" "}
               <span className="capitalize">{b.payment_status}</span>
@@ -155,7 +143,7 @@ export default async function DashboardPage() {
           </li>
         ))}
         {upcoming.length === 0 && (
-          <p className="py-3 text-sm text-black/60 dark:text-white/60">
+          <p className="py-3 text-sm text-muted">
             No upcoming bookings.{" "}
             <Link href="/browse" className="underline">
               Find a stylist
@@ -166,16 +154,14 @@ export default async function DashboardPage() {
 
       {past.length > 0 && (
         <>
-          <h2 className="mt-8 text-sm font-medium text-black/60 dark:text-white/60">
-            Past
-          </h2>
-          <ul className="mt-2 divide-y divide-black/10 dark:divide-white/10">
+          <h2 className="mt-8 text-sm font-medium text-muted">Past</h2>
+          <ul className="mt-2 divide-y divide-white/10">
             {past.map((b) => (
               <li key={b.id} className="py-3">
                 <p className="font-medium">
                   {b.services?.name} with {b.stylists?.business_name}
                 </p>
-                <p className="text-sm text-black/60 dark:text-white/60">
+                <p className="text-sm text-muted">
                   {formatDateTime(b.start_time)} · {formatMoney(b.price_cents)} ·{" "}
                   <span className="capitalize">{b.status}</span>
                 </p>
