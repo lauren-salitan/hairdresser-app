@@ -50,7 +50,7 @@ export default async function BookingDetailPage(
             .filter(Boolean)
             .join(", ")}
         </p>
-        <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4">
+        <div className="mt-4 flex items-center justify-between border-t border-border pt-4">
           <span className="text-sm">
             Status: <span className="capitalize">{booking.status}</span>
           </span>
@@ -59,7 +59,7 @@ export default async function BookingDetailPage(
       </div>
 
       {booking.payment_status === "paid" ? (
-        <p className="mt-6 text-sm text-green-400">Paid ✓</p>
+        <p className="mt-6 text-sm text-green-600">Paid ✓</p>
       ) : (
         <form action="/api/checkout" method="POST" className="mt-6">
           <input type="hidden" name="booking_id" value={booking.id} />

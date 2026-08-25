@@ -55,7 +55,7 @@ export default async function StylistProfilePage(
         </div>
 
         <h2 className="font-display mt-10 font-semibold">Services</h2>
-        <ul className="mt-3 divide-y divide-white/10">
+        <ul className="mt-3 divide-y divide-border">
           {activeServices.map((service) => (
             <li key={service.id} className="flex items-start justify-between py-3">
               <div>

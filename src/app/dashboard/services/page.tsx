@@ -32,7 +32,7 @@ export default async function ServicesPage() {
         without deleting it.
       </p>
 
-      <ul className="mt-8 divide-y divide-white/10">
+      <ul className="mt-8 divide-y divide-border">
         {services?.map((service) => (
           <li key={service.id} className="flex items-center justify-between gap-3 py-3">
             <div className={service.active ? "" : "opacity-50"}>

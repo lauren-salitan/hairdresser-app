@@ -23,7 +23,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="grid grid-cols-1 gap-5 border-t border-white/10 py-16 sm:grid-cols-3">
+      <section className="grid grid-cols-1 gap-5 border-t border-border py-16 sm:grid-cols-3">
         <div className="card-glass">
           <h2 className="font-display font-semibold">Search &amp; filter</h2>
           <p className="mt-2 text-sm text-muted">

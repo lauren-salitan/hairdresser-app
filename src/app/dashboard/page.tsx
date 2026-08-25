@@ -66,7 +66,7 @@ export default async function DashboardPage() {
         <h2 className="mt-8 text-sm font-medium text-muted">
           Upcoming ({upcoming.length})
         </h2>
-        <ul className="mt-2 divide-y divide-white/10">
+        <ul className="mt-2 divide-y divide-border">
           {upcoming.map((b) => (
             <li key={b.id} className="flex items-center justify-between gap-3 py-3">
               <div>
@@ -89,7 +89,7 @@ export default async function DashboardPage() {
         {past.length > 0 && (
           <>
             <h2 className="mt-8 text-sm font-medium text-muted">Past</h2>
-            <ul className="mt-2 divide-y divide-white/10">
+            <ul className="mt-2 divide-y divide-border">
               {past.map((b) => (
                 <li key={b.id} className="py-3">
                   <p className="font-medium">
@@ -129,7 +129,7 @@ export default async function DashboardPage() {
       </h1>
 
       <h2 className="mt-8 text-sm font-medium text-muted">Upcoming</h2>
-      <ul className="mt-2 divide-y divide-white/10">
+      <ul className="mt-2 divide-y divide-border">
         {upcoming.map((b) => (
           <li key={b.id} className="py-3">
             <Link href={`/bookings/${b.id}`} className="font-medium hover:underline">
@@ -155,7 +155,7 @@ export default async function DashboardPage() {
       {past.length > 0 && (
         <>
           <h2 className="mt-8 text-sm font-medium text-muted">Past</h2>
-          <ul className="mt-2 divide-y divide-white/10">
+          <ul className="mt-2 divide-y divide-border">
             {past.map((b) => (
               <li key={b.id} className="py-3">
                 <p className="font-medium">

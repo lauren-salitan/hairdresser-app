@@ -19,7 +19,7 @@ export default function SignupPage() {
         Book appointments, or set up shop as a stylist.
       </p>
 
-      <div className="mt-6 grid grid-cols-2 gap-1 rounded-full border border-white/15 p-1">
+      <div className="mt-6 grid grid-cols-2 gap-1 rounded-full border border-border-strong p-1">
         <button
           type="button"
           onClick={() => setRole("client")}

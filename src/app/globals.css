@@ -3,16 +3,16 @@
 @import "@fontsource-variable/bricolage-grotesque";
 
 :root {
-  --background: #09060f;
-  --background-elevated: #120c1e;
-  --foreground: #f6f4f9;
-  --muted: rgba(246, 244, 249, 0.62);
-  --muted-2: rgba(246, 244, 249, 0.4);
-  --border: rgba(246, 244, 249, 0.1);
-  --border-strong: rgba(246, 244, 249, 0.22);
-  --accent-violet: #a78bfa;
-  --accent-pink: #f472b6;
-  --accent-orange: #fb923c;
+  --background: #fbf6f0;
+  --background-elevated: #ffffff;
+  --foreground: #1c1420;
+  --muted: rgba(28, 20, 32, 0.62);
+  --muted-2: rgba(28, 20, 32, 0.42);
+  --border: rgba(28, 20, 32, 0.1);
+  --border-strong: rgba(28, 20, 32, 0.18);
+  --accent-violet: #8b5cf6;
+  --accent-pink: #ec4899;
+  --accent-orange: #f97316;
   --gradient-accent: linear-gradient(
     115deg,
     var(--accent-violet) 0%,
@@ -28,6 +28,7 @@
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-violet: var(--accent-violet);
   --color-pink: var(--accent-pink);
   --color-orange: var(--accent-orange);
@@ -38,40 +39,20 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-* {
-  border-color: var(--border);
-}
-
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
   min-height: 100%;
-  background: radial-gradient(
-      ellipse 70% 45% at 15% -8%,
-      rgba(167, 139, 250, 0.16),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 60% 45% at 100% 0%,
-      rgba(251, 146, 60, 0.12),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 55% 40% at 50% 100%,
-      rgba(244, 114, 182, 0.08),
-      transparent 60%
-    ),
-    var(--background);
-  background-attachment: fixed;
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
 }
 
 ::selection {
   background: var(--accent-pink);
-  color: #09060f;
+  color: #fff;
 }
 
 @layer components {
@@ -93,54 +74,47 @@ body {
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-40;
     background-image: var(--gradient-accent);
-    box-shadow: 0 10px 30px -12px rgba(167, 139, 250, 0.6);
+    box-shadow: 0 8px 20px -8px rgba(236, 72, 153, 0.4);
   }
   .btn-primary:hover:not(:disabled) {
-    filter: brightness(1.08);
-    box-shadow: 0 12px 34px -10px rgba(244, 114, 182, 0.55);
+    filter: brightness(1.05);
+    box-shadow: 0 10px 24px -6px rgba(236, 72, 153, 0.45);
+    transform: translateY(-1px);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-40;
-    border-color: var(--border-strong);
-    background: rgba(255, 255, 255, 0.03);
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 px-6 py-3 text-sm font-semibold transition;
+    border-color: var(--foreground);
+    background: var(--background-elevated);
     color: var(--foreground);
   }
-  .btn-secondary:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.32);
+  .btn-secondary:hover {
+    background: var(--foreground);
+    color: var(--background-elevated);
   }
 
   .card-glass {
-    @apply rounded-2xl border p-5 backdrop-blur-xl transition;
+    @apply rounded-2xl border p-5 transition;
     border-color: var(--border);
-    background: linear-gradient(
-      160deg,
-      rgba(255, 255, 255, 0.05),
-      rgba(255, 255, 255, 0.015)
-    );
+    background: var(--background-elevated);
+    box-shadow: 0 2px 10px -4px rgba(28, 20, 32, 0.08);
   }
   a.card-glass:hover {
-    border-color: rgba(244, 114, 182, 0.4);
-    background: linear-gradient(
-      160deg,
-      rgba(255, 255, 255, 0.08),
-      rgba(255, 255, 255, 0.02)
-    );
+    border-color: rgba(236, 72, 153, 0.35);
+    box-shadow: 0 10px 24px -8px rgba(236, 72, 153, 0.25);
     transform: translateY(-2px);
   }
 
   .badge-glass {
-    @apply rounded-full border px-2.5 py-1 text-xs font-medium;
-    border-color: var(--border);
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--muted);
+    @apply rounded-full px-2.5 py-1 text-xs font-medium;
+    background: rgba(139, 92, 246, 0.1);
+    color: #6d28d9;
   }
 
   .input-glass {
-    @apply w-full rounded-lg border px-3 py-2 text-sm outline-none transition;
-    border-color: var(--border-strong);
-    background: rgba(255, 255, 255, 0.03);
+    @apply w-full rounded-xl border-2 px-3 py-2 text-sm outline-none transition;
+    border-color: var(--border);
+    background: var(--background-elevated);
     color: var(--foreground);
   }
   .input-glass::placeholder {
@@ -148,7 +122,6 @@ body {
   }
   .input-glass:focus {
     border-color: var(--accent-pink);
-    box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.16);
   }
   .input-glass:disabled {
     opacity: 0.4;
@@ -172,12 +145,13 @@ body {
   }
 
   .slot-btn {
-    @apply rounded-lg border px-2 py-1.5 text-sm font-medium transition;
-    border-color: var(--border-strong);
+    @apply rounded-lg border-2 px-2 py-1.5 text-sm font-medium transition;
+    border-color: var(--border);
     color: var(--foreground);
   }
   .slot-btn:hover {
-    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--border-strong);
+    background: rgba(28, 20, 32, 0.03);
   }
   .slot-btn-selected {
     @apply rounded-lg px-2 py-1.5 text-sm font-semibold text-white transition;
@@ -186,32 +160,31 @@ body {
 
   .alert-error {
     @apply rounded-lg border px-3 py-2 text-sm;
-    border-color: rgba(248, 113, 113, 0.3);
-    background: rgba(248, 113, 113, 0.1);
-    color: #fca5a5;
+    border-color: rgba(220, 38, 38, 0.25);
+    background: rgba(220, 38, 38, 0.08);
+    color: #b91c1c;
   }
   .alert-success {
     @apply rounded-lg border px-3 py-2 text-sm;
-    border-color: rgba(74, 222, 128, 0.3);
-    background: rgba(74, 222, 128, 0.1);
-    color: #86efac;
+    border-color: rgba(22, 163, 74, 0.25);
+    background: rgba(22, 163, 74, 0.08);
+    color: #15803d;
+  }
+  .alert-warning {
+    @apply rounded-lg border px-4 py-3 text-sm;
+    border-color: rgba(217, 119, 6, 0.25);
+    background: rgba(217, 119, 6, 0.08);
+    color: #b45309;
   }
 
   .specialty-pill {
-    @apply flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm transition;
-    border-color: var(--border-strong);
+    @apply flex items-center gap-2 rounded-full border-2 px-3 py-1.5 text-sm transition;
+    border-color: var(--border);
     color: var(--foreground);
   }
   .specialty-pill:has(input:checked) {
     background-image: var(--gradient-accent);
     border-color: transparent;
     color: white;
-  }
-
-  .alert-warning {
-    @apply rounded-lg border px-4 py-3 text-sm;
-    border-color: rgba(251, 191, 36, 0.3);
-    background: rgba(251, 191, 36, 0.1);
-    color: #fcd34d;
   }
 }
