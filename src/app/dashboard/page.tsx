@@ -50,6 +50,9 @@ export default async function DashboardPage() {
             <Link href="/dashboard/availability" className="btn-secondary !px-4 !py-2 text-sm">
               Set availability
             </Link>
+            <Link href="/dashboard/google" className="btn-secondary !px-4 !py-2 text-sm">
+              Google reviews
+            </Link>
           </div>
         </div>
 
